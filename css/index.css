@@ -1,0 +1,302 @@
+html {
+  font-family: 'Quicksand', sans-serif;
+  scroll-behavior: smooth;
+  --main-color: #2056B5;
+}
+
+body {
+  margin: 0;
+  background: white;
+}
+
+::selection {
+  background-color: var(--main-color);
+  color: white;
+}
+
+a {
+  color: var(--main-color);
+}
+
+/* ================================= */
+/* CSS Waves, big thanks to Goodkatz */
+
+#waves-bg {
+  /* background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%); */
+  background: linear-gradient(60deg, rgb(46, 44, 158) 0%, rgb(7, 162, 223) 100%);
+  color: white;
+}
+
+.waves {
+  position: relative;
+  width: 100%;
+  height: 7.5vh;
+  margin-bottom: -7px; /*Fix for safari gap*/
+  min-height: 40px;
+  max-height: 60px;
+}
+
+/* Animation */
+.parallax > use {
+  animation: waves-horizontal 50s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+
+.parallax > use:nth-child(1) {
+  animation-delay: -4s;
+  animation-duration: 14s;
+}
+
+.parallax > use:nth-child(2) {
+  animation-delay: -6s;
+  animation-duration: 20s;
+}
+
+.parallax > use:nth-child(3) {
+  animation-delay: -8s;
+  animation-duration: 26s;
+}
+
+.parallax > use:nth-child(4) {
+  animation-delay: -10s;
+  animation-duration: 40s;
+}
+
+@keyframes waves-horizontal {
+  0% {
+    transform: translate3d(-90px,0,0);
+  }
+  100% { 
+    transform: translate3d(85px,0,0);
+  }
+}
+
+@media (max-width: 768px) {
+  .waves {
+    min-height: 30px;
+    max-height: 40px;
+  }
+}
+
+/* End CSS Waves styles */
+/* ==================== */
+
+h1 {
+  margin: 0;
+}
+
+.navlink, #main-logo {
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+}
+
+#header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+
+#logo {
+  margin-right: 0.5rem;
+}
+
+#navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navlink {
+  text-transform: uppercase;
+  margin-left: 1rem;
+  cursor: pointer;
+
+  /* The following all exist to override ugly button styles: */
+  font-family: 'Quicksand', sans-serif;
+  color: white;
+  background: none;
+  border: none;
+  font-size: medium;
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+
+.navlink.active {
+  text-decoration: rgba(255, 255, 255, 0.8) underline;
+  text-underline-offset: 0.1rem;
+}
+
+@media (max-width: 950px) {
+  .navlink {
+    font-size: smaller;
+    margin-left: 0.75rem;
+  }
+}
+
+#navbutton {
+  display: none;
+  /* override button default */
+  background: none;
+  border: none;
+  padding: 0;
+  /* ======================= */
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+#navbutton:hover, .navlink:hover {
+  opacity: 0.75;
+}
+
+#mobile-menu {
+  position: fixed;
+  z-index: 1;
+  top: 7rem;
+  left: 1rem;
+  bottom: 1rem;
+  right: 1rem;
+  
+  display: none; /* flex */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  transform: scale(0.5);
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  visibility: hidden;
+  opacity: 0;
+}
+
+#mobile-menu.active {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+}
+
+#mobile-menu .navlink {
+  font-size: large;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  #header {
+    padding: 0.5rem 1rem;
+  }
+
+  #navbar {
+    display: none;
+  }
+
+  #navbutton {
+    display: block;
+  }
+
+  #mobile-menu {
+    display: flex;
+  }
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: min(2rem, 4vh) min(4rem, 8vw);
+}
+
+.page-content > p {
+  max-width: 60rem;
+}
+
+h1 {
+  max-width: 50rem;
+  text-align: center;
+}
+
+/* ================== */
+/* Page Footer Styles */
+
+#footer {
+  position: relative;
+  margin: 75px 0;
+}
+
+.divider {
+  position: absolute;
+  top: 0;
+  left: 25%;
+  right: 25%;
+  height: 1px;
+  background-color: #eee
+}
+
+#footer-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-link {
+  color: #1a1b1f;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+  font-size: smaller;
+  margin: 2rem min(2rem, 2.5vw);
+
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.footer-link:hover {
+  opacity: 1;
+}
+
+.tiny-logo {
+  margin: 0 0.5rem;
+}
+
+/* End Footer Styles */
+/* ================= */
+
+.under-construction-banner {
+  position: relative;
+  width: 60%;
+  overflow: hidden;
+  margin-top: 5rem;
+}
+
+.under-construction-svg {
+  height: max(60px, 10vh);
+  animation: ucs-scroll 8s linear infinite;
+}
+
+@keyframes ucs-scroll {
+  0% {
+    transform: none;
+  }
+  100% {
+    transform: translateX(-85px);
+  }
+}
+
+.under-construction-text {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.75;
+}
+
+/* ==================== */
+
+.hidden {
+  display: none;
+}
