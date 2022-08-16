@@ -11,6 +11,7 @@
   function init() {
     setNavbarHighlight();
     setNavbarListeners();
+    createLightBeams();
   }
 
   /**
@@ -22,7 +23,7 @@
     for (let i = 0; i < links.length; i++) {
       const tab = links[i].innerText.toLowerCase();
 
-      if (tab === page) {
+      if (tab === page && !links[i].classList.contains('mobile')) {
         links[i].classList.add('active');
       } else {
         links[i].classList.remove('active');
@@ -34,21 +35,23 @@
    * Loops over all links in the navbar and sets their listeners, and adds
    * the mobile menu listener.
    */
-   function setNavbarListeners() {
+  function setNavbarListeners() {
     const links = document.querySelectorAll('.navlink');
     for (let i = 0; i < links.length; i++) {
-      const tab = links[i].innerText.toLowerCase();
-      links[i].addEventListener('click', function() {
-        setPage(tab);
+      const tab = links[i].textContent.toLowerCase();
+      links[i].addEventListener('click', function () {
+        if (!links[i].classList.contains('mm-close')) {
+          setPage(tab);
+        }
         if (links[i].classList.contains('mobile')) {
           mobile_menu.classList.toggle('active');
         }
       });
     }
-    
+
     const menu_button = document.querySelector('#navbutton');
     const mobile_menu = document.querySelector('#mobile-menu');
-    menu_button.addEventListener('click', function() {
+    menu_button.addEventListener('click', function () {
       mobile_menu.classList.toggle('active');
     });
   }
@@ -70,4 +73,28 @@
     }
   }
 
+  // Creates the light beams at the top of the page.
+  function createLightBeams() {
+    const beam = document.querySelector('.light-beam.original');
+    const container = document.getElementById('light-beams-container');
+
+    let x = 0;
+    while (x < window.innerWidth) {
+      const new_beam = beam.cloneNode(true);
+      new_beam.style.setProperty('--offset', x); // in %
+      new_beam.style.setProperty('--delay', random(0, 20) - 10); // in sec
+      new_beam.style.setProperty('--duration', random(7, 10)); // in sec
+      new_beam.style.setProperty('--height', random(6, 14)); // in vh
+
+      new_beam.classList.remove('original');
+      container.appendChild(new_beam);
+      x += random(10, 30);
+    }
+  }
+
+  // Shorthand helper function for getting a random integer
+  // between min and max (inclusive).
+  function random(min, max) {
+    return Math.max(min, Math.round(Math.random() * max));
+  }
 })();
