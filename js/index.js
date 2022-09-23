@@ -11,6 +11,9 @@
   function init() {
     setNavbarHighlight();
     setNavbarListeners();
+
+    loadNewsPosts();
+
     createLightBeams();
   }
 
@@ -71,6 +74,76 @@
         pages[i].classList.add('hidden');
       }
     }
+  }
+
+  // Toggles the news page between the posts list and the single article container.
+  function toggleNewsView() {
+    const article = document.getElementById('full-post');
+    article.classList.toggle('hidden');
+    const list = document.getElementById('posts-list');
+    list.classList.toggle('hidden');
+  }
+
+  // Loads post data from posts.js, where the list posts contains
+  // several objects each representing a post. Fills out the posts list
+  // and gives them event listeners so that when clicked on they display their
+  // corresponding article/post.
+  function loadNewsPosts() {
+    const back_link = document.getElementById('back-link');
+    back_link.addEventListener('click', function () {
+      toggleNewsView();
+    });
+
+    const container = document.getElementById('posts-list');
+    const template = document.getElementById('template-post');
+
+    console.log(posts);
+
+    for (let i = 0; i < posts.length; i++) {
+      const post = template.cloneNode(true);
+      post.classList.remove('hidden');
+      post.addEventListener('click', populatePost);
+      post.post = posts[i];
+
+      // Fill out the title, date and content
+      post.querySelector('h3').innerHTML = posts[i].title;
+      post.querySelector('span').innerHTML = posts[i].date;
+      post.querySelector('p').innerHTML = posts[i].body.replace(/^(.{100}[^\s]*).*/, "$1") + "...";
+      // The above regex shortens a string to the number of characters inside
+      // the curly braces without cutting off in the middle of a word.
+
+      container.appendChild(post);
+    }
+  }
+
+  /**
+   * Populates the div with id 'full-post' based on the post
+   * which was clicked.
+   * @param {object} evt The event object.
+   */
+  function populatePost(evt) {
+    const post = evt.currentTarget.post;
+    document.getElementById('post-title').innerHTML = post.title;
+    document.getElementById('post-date').innerHTML = post.date;
+    document.getElementById('post-body').innerHTML = post.body;
+    
+    const link = document.getElementById('post-link');
+    if (post.link) {
+      link.href = post.link;
+      link.classList.remove('hidden');
+    } else {
+      link.classList.add('hidden');
+    }
+
+    const img = document.getElementById('post-img');
+    if (post.img) {
+      img.src = post.img;
+      img.classList.remove('hidden');
+    } else {
+      img.classList.add('hidden');
+    }
+
+    toggleNewsView();
   }
 
   // Creates the light beams at the top of the page.
