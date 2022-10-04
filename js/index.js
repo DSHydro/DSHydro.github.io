@@ -15,6 +15,12 @@
     loadNewsPosts();
 
     createLightBeams();
+    
+    const fish = document.querySelectorAll('.fish');
+    for (let i = 0; i < fish.length; i++) {
+      const id = fish[i].id;
+      setTimeout(() => { updateFish(id); }, random(0, 3) * 1000);
+    }
   }
 
   /**
@@ -154,7 +160,7 @@
     let x = 0;
     while (x < window.innerWidth) {
       const new_beam = beam.cloneNode(true);
-      new_beam.style.setProperty('--offset', x); // in %
+      new_beam.style.setProperty('--offset', x); // in px
       new_beam.style.setProperty('--delay', random(0, 20) - 10); // in sec
       new_beam.style.setProperty('--duration', random(7, 10)); // in sec
       new_beam.style.setProperty('--height', random(6, 14)); // in vh
@@ -163,6 +169,33 @@
       container.appendChild(new_beam);
       x += random(10, 30);
     }
+  }
+
+  // Once called, this function will infinitely loop,
+  // calling itself over an over after random delays to
+  // continuously update it's assigned fish.
+  function updateFish(fish) {
+    const ref = document.getElementById(fish);
+
+    const start_x = random(0, window.innerWidth);
+    const offset_y = random(0, 50) - 25; // deviation up or down in px
+    const duration = random(5, 9); // in sec
+
+    ref.style.setProperty('--start-x', start_x);
+    ref.style.setProperty('--offset-y', offset_y);
+    ref.style.setProperty('--duration', duration);
+    ref.classList.add('animated');
+    if (random(0,1) !== 0) {
+      ref.classList.add('reverse');
+    } else {
+      ref.classList.remove('reverse');
+    }
+    
+    // potentially replace below with onanimationend event listener,
+    // plus setTimeout on top of that for extra delay
+    const delay = (duration + random(1, 5)) * 1000
+    setTimeout(() => { ref.classList.remove('animated'); }, duration * 1000);
+    setTimeout(() => { updateFish(fish); }, delay);
   }
 
   // Shorthand helper function for getting a random integer

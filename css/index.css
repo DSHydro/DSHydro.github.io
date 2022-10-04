@@ -18,9 +18,9 @@ a {
   color: var(--main-color);
 }
 
-/* ================================= */
-/* CSS Waves & Light Effects Section */ 
-/* Big thanks to Goodkatz for Waves  */
+/* ======================================= */
+/* CSS Waves, Light & Fish Effects Section */ 
+/*     Big thanks to Goodkatz for Waves    */
 
 #waves-bg {
   /* background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%); */
@@ -45,6 +45,7 @@ a {
   height: 100%;
   overflow: hidden;
   pointer-events: none;
+  z-index: 0;
 }
 
 .light-beam {
@@ -118,8 +119,56 @@ a {
   }
 }
 
-/* End CSS Waves & Light styles */
-/* ============================ */
+.fish {
+  position: absolute;
+  top: calc(30px + calc(var(--offset-y) * 1px));
+  left: calc(var(--start-x) * 1px);
+  height: 30px;
+  opacity: 0;
+}
+
+.fish.animated {
+  animation-name: swim;
+  animation-timing-function: linear;
+  animation-direction: forwards;
+  animation-duration: calc(var(--duration) * 1s);
+}
+
+.fish.reverse {
+  animation-name: swim-reverse;
+  animation-direction: reverse;
+}
+
+@keyframes swim {
+  0% {
+    opacity: 0;
+    transform: none;
+  }
+  40%, 60% {
+    opacity: 0.05;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(500%);
+  }
+}
+
+@keyframes swim-reverse {
+  0% {
+    opacity: 0;
+    transform: scaleX(-1);
+  }
+  40%, 60% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(400%) scaleX(-1);
+  }
+}
+
+/* End CSS Waves, Light & Fish styles */
+/* ================================== */
 
 h1 {
   margin: 0;
@@ -139,6 +188,9 @@ h1 {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
 #logo {
@@ -195,7 +247,7 @@ h1 {
 
 #mobile-menu {
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   top: 0;
   left: 0;
   bottom: 0;
