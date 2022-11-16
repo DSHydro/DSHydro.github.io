@@ -16,6 +16,12 @@ body {
 
 a {
   color: var(--main-color);
+  transition: background-color 0.5s ease;
+  border-radius: 2px;
+}
+
+a:hover {
+  background-color: #2057b511;
 }
 
 /* ======================================= */
@@ -312,10 +318,6 @@ h1 {
   .hint {
     font-size: 12px;
   }
-
-  p {
-    font-size: smaller;
-  }
 }
 
 .page-content {
@@ -441,12 +443,13 @@ h1 {
 .profile-icon {
   width: 100%;
   height: 100%;
-  border-radius: 15px;
+  border-radius: var(--gap);
 }
 
 .profile-desc:hover, .team-card:hover .profile-desc {
   transform: scale(1);
   opacity: 1;
+  cursor: help;
 }
 
 .profile-desc {
@@ -465,7 +468,7 @@ h1 {
   right: 0;
   bottom: 0;
   overflow-y: scroll;
-  border-radius: 15px;
+  border-radius: var(--gap);
 }
 
 .profile-desc {
