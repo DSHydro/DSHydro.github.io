@@ -318,6 +318,10 @@ h1 {
   .hint {
     font-size: 12px;
   }
+
+  .profile-desc {
+    font-size: 16px;
+  }
 }
 
 .page-content {
