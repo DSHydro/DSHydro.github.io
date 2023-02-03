@@ -21,8 +21,6 @@
       const id = fish[i].id;
       setTimeout(() => { updateFish(id); }, random(0, 3) * 1000);
     }
-
-    setPage("team");
   }
 
   /**
