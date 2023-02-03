@@ -35,7 +35,7 @@
         <button class="navlink">Home</button>
         <button class="navlink">Current Research</button>
         <button class="navlink">Publications</button>
-        <button class="navlink">News</button>
+        <!-- <button class="navlink">News</button> -->
         <button class="navlink">Team</button>
         <!-- <button class="navlink">Data</button> -->
         <!-- <button class="navlink">Contact</button> -->
@@ -96,9 +96,9 @@
       </svg>
     </button>
     <button class="mobile navlink">Home</button>
-    <button class="mobile navlink">Current Research</button>
+    <button class="mobile navlink">Research</button>
     <button class="mobile navlink">Publications</button>
-    <button class="mobile navlink">News</button>
+    <!-- <button class="mobile navlink">News</button> -->
     <button class="mobile navlink">Team</button>
     <!-- <button class="mobile navlink">Data</button>
     <button class="mobile navlink">Contact</button> -->
@@ -352,9 +352,8 @@
 
   <section class="page-content hidden" id="team">
     <h1>DSHydro Team</h1>
-    <p class="hint desktop">Hover our icons!</p>
-    <p class="hint mobile">Tap our icons!</p>
-    <section id="team-container">
+    <p class="hint">Who we are and why we do it!</p>
+    <section id="team-container" class="desktop">
       <div class="team-card">
         <img class="profile-icon" src="assets/nc.png" />
         <p class="profile-desc">
@@ -365,32 +364,107 @@
           degree from the University of Washington. In her spare time she enjoys spending time with her family,
           traveling, and skiing.
         </p>
+        <img class="arrow-button" src="./assets/arrow_button.svg" />
+        <img class="arrow-button inverse" src="./assets/arrow_button.svg" />
       </div>
-      <div class="team-card">
+      <div class="team-card hidden">
         <img class="profile-icon" src="assets/ky.png" />
         <p class="profile-desc">
           Kehan Yang is a Data Science Postdoctoral Fellow working with Dr. Nicoleta Cristea and Dr. Jessica Lundquist
           in the Department of Civil and Environmental Engineering and eScience Institute at the University of
           Washington. She earned her Ph.D. in Geography at University of Colorado Boulder, advised by Dr. Noah Molotch.
-          Dr. Yang’s research is focused on advancing our understanding of spatiotemporal variability of seasonal
+          Dr. Yang's research is focused on advancing our understanding of spatiotemporal variability of seasonal
+          snowpack and snow water resources using multi-platform remote sensing observations and statistical learning
+          models. Her current project focuses on developing a cloud-based cyberinfrastructure to derive high
+          spatiotemporal resolution (i.e., ~ daily, ~3 m) snow cover information from commercial CubeSat imagery with
+          particular interest in vulnerable mountain ecosystems.
+        </p>
+        <img class="arrow-button" src="./assets/arrow_button.svg" />
+        <img class="arrow-button inverse" src="./assets/arrow_button.svg" />
+      </div>
+      <div class="team-card hidden">
+        <img class="profile-icon" src="assets/profile_icon.png" />
+        <p class="profile-desc">
+          Aji John is a recent University of Washington (UW) Biology graduate working with Dr. Josh Lawler (UW SEFS)
+          and Dr. Nicoleta Cristea (UW Civil Engg.). Aji is actively researching use of fine-spatial satellite imagery
+          to investigate flowering patterns of montane species, and looking at distribution of snow in montane areas (a
+          key driver of productivity). He is also affiliated with eScience Institute at UW as a Postdoctoral fellow.
+        </p>
+        <img class="arrow-button" src="./assets/arrow_button.svg" />
+        <img class="arrow-button inverse" src="./assets/arrow_button.svg" />
+      </div>
+      <div class="team-card hidden">
+        <img class="profile-icon" src="assets/st2.png" />
+        <p class="profile-desc">
+          Stefan Todoran is University of Washington Computer Science student working primarily with Dr. Nicoleta
+          Cristea and Dr. Marine Denolle as part of the GeoSMART team. Stefan is currently building infrastructure
+          for the advancement of ML tools within the geosciences, ranging from the GeoSMART and DSHydro websites and
+          blogs to CI/CD automation for GeoSMART curricula. In addition, Stefan is currently a part of multiple research
+          projects, including the use of computer vision in the reconstruction of misaligned image datasets, as well as
+          the use of aereal photography for cold water refuge mapping. In his free time he enjoys arts & crafts, skiing,
+          dancing and traveling!
+        </p>
+        <img class="arrow-button" src="./assets/arrow_button.svg" />
+        <img class="arrow-button inverse" src="./assets/arrow_button.svg" />
+      </div>
+      <svg class="mini-waves down" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="-100 24 250 158" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="team-page-waves">
+          <use xlink:href="#gentle-wave" x="-88" y="0" fill="rgba(255,255,255,0.7)" />
+          <use xlink:href="#gentle-wave" x="88" y="3" fill="rgba(255,255,255,0.5)" />
+          <use xlink:href="#gentle-wave" x="-48" y="5" fill="rgba(255,255,255,0.3)" />
+          <use xlink:href="#gentle-wave" x="18" y="7" fill="#fff" />
+          <rect x="-100" y="80" width="250" height="500" fill="#fff" />
+        </g>
+      </svg>
+    </section>
+    <section id="team-mobile-view" class="mobile">
+      <div class="team-card-mobile">
+        <img class="profile-icon" src="assets/nc.png" />
+        <p class="profile-desc">
+          Nicoleta is a research hydrologist interested in combining computer modeling of freshwater systems with remote
+          sensing and spatial and temporal analyses. Like in many fields, efficiently storing, analyzing, and
+          visualizing the increasingly large datasets are becoming crucial for conducting successful research. We are
+          working on including modern data science techniques in teaching and research activities. Nicoleta holds a PhD
+          degree from the University of Washington. In her spare time she enjoys spending time with her family,
+          traveling, and skiing.
+        </p>
+      </div>
+      <div class="team-card-mobile inverse">
+        <img class="profile-icon" src="assets/ky.png" />
+        <p class="profile-desc">
+          Kehan Yang is a Data Science Postdoctoral Fellow working with Dr. Nicoleta Cristea and Dr. Jessica Lundquist
+          in the Department of Civil and Environmental Engineering and eScience Institute at the University of
+          Washington. She earned her Ph.D. in Geography at University of Colorado Boulder, advised by Dr. Noah Molotch.
+          Dr. Yang's research is focused on advancing our understanding of spatiotemporal variability of seasonal
           snowpack and snow water resources using multi-platform remote sensing observations and statistical learning
           models. Her current project focuses on developing a cloud-based cyberinfrastructure to derive high
           spatiotemporal resolution (i.e., ~ daily, ~3 m) snow cover information from commercial CubeSat imagery with
           particular interest in vulnerable mountain ecosystems.
         </p>
       </div>
-      <div class="team-card">
+      <div class="team-card-mobile">
         <img class="profile-icon" src="assets/profile_icon.png" />
         <p class="profile-desc">
-          Aji John is a recent University of Washington (UW) Biology graduate working with Dr. Josh Lawler (UW SEFS) and Dr. Nicoleta Cristea (UW Civil Engg.).
-          Aji is actively researching use of fine-spatial satellite imagery to investigate flowering patterns of montane species, and looking at 
-          distribution of snow in montane areas (a key driver of productivity). He is also affiliated with eScience Institute at UW as a Postdoctoral fellow. 
+          Aji John is a recent University of Washington (UW) Biology graduate working with Dr. Josh Lawler (UW SEFS)
+          and Dr. Nicoleta Cristea (UW Civil Engg.). Aji is actively researching use of fine-spatial satellite imagery
+          to investigate flowering patterns of montane species, and looking at distribution of snow in montane areas (a
+          key driver of productivity). He is also affiliated with eScience Institute at UW as a Postdoctoral fellow.
         </p>
       </div>
-      <div class="team-card">
-        <img class="profile-icon" src="assets/st.jpg" />
+      <div class="team-card-mobile inverse">
+        <img class="profile-icon" src="assets/st2.png" />
         <p class="profile-desc">
-          Stefan Todoran
+          Stefan Todoran is University of Washington Computer Science student working primarily with Dr. Nicoleta
+          Cristea and Dr. Marine Denolle as part of the GeoSMART team. Stefan is currently building infrastructure
+          for the advancement of ML tools within the geosciences, ranging from the GeoSMART and DSHydro websites and
+          blogs to CI/CD automation for GeoSMART curricula. In addition, Stefan is currently a part of multiple research
+          projects, including the use of computer vision in the reconstruction of misaligned image datasets, as well as
+          the use of aereal photography for cold water refuge mapping. In his free time he enjoys arts & crafts, skiing,
+          dancing and traveling!
         </p>
       </div>
     </section>

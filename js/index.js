@@ -12,15 +12,17 @@
     setNavbarHighlight();
     setNavbarListeners();
 
+    setTeamPageCycleListeners();
     loadNewsPosts();
-
     createLightBeams();
-    
+
     const fish = document.querySelectorAll('.fish');
     for (let i = 0; i < fish.length; i++) {
       const id = fish[i].id;
       setTimeout(() => { updateFish(id); }, random(0, 3) * 1000);
     }
+
+    setPage("team");
   }
 
   /**
@@ -132,7 +134,7 @@
     document.getElementById('post-title').innerHTML = post.title;
     document.getElementById('post-date').innerHTML = post.date;
     document.getElementById('post-body').innerHTML = post.body;
-    
+
     const link = document.getElementById('post-link');
     if (post.link) {
       link.href = post.link;
@@ -185,12 +187,12 @@
     ref.style.setProperty('--offset-y', offset_y);
     ref.style.setProperty('--duration', duration);
     ref.classList.add('animated');
-    if (random(0,1) !== 0) {
+    if (random(0, 1) !== 0) {
       ref.classList.add('reverse');
     } else {
       ref.classList.remove('reverse');
     }
-    
+
     // potentially replace below with onanimationend event listener,
     // plus setTimeout on top of that for extra delay
     const delay = (duration + random(1, 5)) * 1000
@@ -202,5 +204,37 @@
   // between min and max (inclusive).
   function random(min, max) {
     return Math.max(min, Math.round(Math.random() * max));
+  }
+
+  function setTeamPageCycleListeners() {
+    const buttons = document.querySelectorAll('.arrow-button');
+    const waves = document.querySelector('.mini-waves');
+    const cards = document.querySelectorAll('.team-card');
+    let current = 0;
+
+    const nextFunc = function () {
+      waves.classList.remove('down');
+      setTimeout(() => {
+        cards[current].classList.add('hidden');
+        current = current + 1 < cards.length ? current + 1 : 0;
+        cards[current].classList.remove('hidden');
+        waves.classList.add('down');
+      }, 1000);
+    };
+    const prevFunc = function () {
+      waves.classList.remove('down');
+      setTimeout(() => {
+        cards[current].classList.add('hidden');
+        current = current > 0 ? current - 1 : cards.length - 1;
+        cards[current].classList.remove('hidden');
+        waves.classList.add('down');
+      }, 1000);
+    };
+
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click',
+        buttons[i].classList.contains("inverse") ? prevFunc : nextFunc
+      );
+    }
   }
 })();
