@@ -244,11 +244,16 @@ h1 {
   padding: 0;
   /* ======================= */
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 #navbutton:hover, .navlink:hover {
   opacity: 0.75;
+}
+
+#navbutton.menu-open {
+  opacity: 0;
+  transform: scale(0.5);
 }
 
 #mobile-menu {

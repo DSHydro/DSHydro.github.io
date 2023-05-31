@@ -27,9 +27,21 @@
     // for users with js enabled, we do this:
     const scroll_btn = document.getElementById('scroll-top-button');
     scroll_btn.addEventListener('click', (evt) => {
-      window.scrollTo({top: '0'});
+      window.scrollTo({ top: '0' });
       evt.preventDefault();
     });
+
+    // This way the pages are actually bookmark-able and reloading
+    // does not return the user to the home page. 
+    if (window.location.hash) {
+      const page = window.location.hash.slice(1); // remove the # from the hash
+      if (isPage(page)) {
+        setPage(page);
+      } else {
+        // clears the hash
+        history.pushState("", document.title, window.location.pathname + window.location.search);
+      }
+    }
   }
 
   /**
@@ -39,7 +51,7 @@
   function setNavbarHighlight() {
     const links = document.querySelectorAll('.navlink');
     for (let i = 0; i < links.length; i++) {
-      const tab = links[i].innerText.toLowerCase();
+      const tab = links[i].innerText.replace(/\s+/g, '-').toLowerCase();
 
       if (tab === page && !links[i].classList.contains('mobile')) {
         links[i].classList.add('active');
@@ -63,6 +75,7 @@
         }
         if (links[i].classList.contains('mobile')) {
           mobile_menu.classList.toggle('active');
+          menu_button.classList.toggle('menu-open');
         }
       });
     }
@@ -71,6 +84,7 @@
     const mobile_menu = document.querySelector('#mobile-menu');
     menu_button.addEventListener('click', function () {
       mobile_menu.classList.toggle('active');
+      menu_button.classList.toggle('menu-open');
     });
   }
 
@@ -79,16 +93,40 @@
    * @param {string} tab The tab to set the page state to.
    */
   function setPage(tab) {
-    page = tab;
+    page = tab.replace(/\s+/g, '-');
+
+    if (page === "home") {
+      history.pushState("", document.title, window.location.pathname + window.location.search);
+    } else {
+      window.location.hash = page;
+    }
+
     setNavbarHighlight();
     const pages = document.querySelectorAll('.page-content');
     for (let i = 0; i < pages.length; i++) {
-      if (pages[i].id === page) {
+      if (pages[i].id === `page-${page}`) {
         pages[i].classList.remove('hidden');
       } else {
         pages[i].classList.add('hidden');
       }
     }
+  }
+
+  /**
+   * Verifies a page exists for the given tab name.
+   * @param {string} tab The tab name to check has a page.
+   */
+  function isPage(tab) {
+    let found = false;
+    const pages = document.querySelectorAll('.page-content');
+
+    pages.forEach(page => {
+      if (page.id === `page-${tab}`) {
+        found = true;
+      }
+    });
+
+    return found;
   }
 
   // Toggles the news page between the posts list and the single article container.
