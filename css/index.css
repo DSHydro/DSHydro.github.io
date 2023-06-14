@@ -1,5 +1,6 @@
 html {
   font-family: 'Quicksand', sans-serif;
+  overscroll-behavior: none;
   scroll-behavior: smooth;
   --main-color: #2056B5;
 }
